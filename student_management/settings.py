@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'students',
+    'authentication',   
 ]
 
 MIDDLEWARE = [
@@ -55,8 +56,8 @@ ROOT_URLCONF = 'student_management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [],  
+        'APP_DIRS': True,  
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -67,6 +68,10 @@ TEMPLATES = [
         },
     },
 ]
+
+# Redirect after successful login and logout
+LOGIN_REDIRECT_URL = 'student_list'  # Redirect after successful login
+LOGOUT_REDIRECT_URL = 'login'  # Redirect to login page after logging out
 
 WSGI_APPLICATION = 'student_management.wsgi.application'
 
