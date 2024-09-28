@@ -1,12 +1,8 @@
 <h1>{% if student %}Edit{% else %}Add{% endif %} Student</h1>
 <form method="POST">
     {% csrf_token %}
-    <p>First Name: <input type="text" name="first_name" value="{% if student %}{{ student.first_name }}{% endif %}"></p>
-    <p>Last Name: <input type="text" name="last_name" value="{% if student %}{{ student.last_name }}{% endif %}"></p>
-    <p>Email: <input type="email" name="email" value="{% if student %}{{ student.email }}{% endif %}"></p>
-    <p>Date of Birth: <input type="date" name="date_of_birth" value="{% if student %}{{ student.date_of_birth }}{% endif %}"></p>
-    <p>Enrollment Date: <input type="date" name="enrollment_date" value="{% if student %}{{ student.enrollment_date }}{% endif %}"></p>
-    <p>Grade: <input type="number" name="grade" value="{% if student %}{{ student.grade }}{% endif %}"></p>
+    {{ form.as_p }}
     <button type="submit">Save</button>
 </form>
 <a href="{% url 'student_list' %}">Back to student list</a>
+
