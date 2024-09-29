@@ -6,7 +6,16 @@ from django.contrib import messages
 
 # View to list all students (No authentication required for viewing)
 def student_list(request):
-    students = Student.objects.all()
+    query = request.GET.get('q')  # Get the search query from the URL
+    if query:
+        students = Student.objects.filter(
+            first_name__icontains=query
+        ) | Student.objects.filter(
+            last_name__icontains=query
+        ) 
+    else:
+        students = Student.objects.all()  # Return all students if no search query
+    
     return render(request, 'students/student_list.html', {'students': students})
 
 # View to display a single student's details (No authentication required for viewing)
