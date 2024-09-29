@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+{% extends 'base.html' %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+
+{% block content %}
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             background-color: #f8f9fa;
-            margin: 0;
         }
         .card {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            margin-top: 50px;  /* Added margin to create spacing below navbar */
         }
         .card-header {
             background-color: #007bff;
@@ -47,7 +43,7 @@
         }
         .button-container {
             display: flex;
-            justify-content: center; /* Center the button */
+            justify-content: center;
         }
         .error-message {
             color: red;
@@ -59,8 +55,7 @@
             margin-top: 20px;
         }
     </style>
-</head>
-<body>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -71,7 +66,6 @@
                     <div class="card-body">
                         <form method="POST">
                             {% csrf_token %}
-                            <!-- Render form fields manually -->
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" id="username" name="username" class="form-control" required>
@@ -92,7 +86,7 @@
                                 <button type="submit" class="btn btn-primary">Sign Up</button>
                             </div>
                         </form>
-                        
+
                         <!-- Error handling -->
                         {% if form.errors %}
                             <div class="error-message">
@@ -106,7 +100,7 @@
                                 </ul>
                             </div>
                         {% endif %}
-                        
+
                         <!-- Link to login page -->
                         <div class="login-link">
                             <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
@@ -116,12 +110,7 @@
             </div>
         </div>
     </div>
+{% endblock %}
 
-    <!-- Bootstrap and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
 
 

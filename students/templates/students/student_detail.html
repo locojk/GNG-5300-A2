@@ -1,9 +1,33 @@
-<h1>{{ student.first_name }} {{ student.last_name }}</h1>
-<p>Email: {{ student.email }}</p>
-<p>Date of Birth: {{ student.date_of_birth }}</p>
-<p>Enrollment Date: {{ student.enrollment_date }}</p>
-<p>Grade: {{ student.grade }}</p>
+{% extends 'base.html' %}
 
-<a href="{% url 'student_edit' student.pk %}">Edit Student</a>
-<a href="{% url 'student_list' %}">Back to student list</a>
+{% block title %}
+    Student Detail
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+            </div>
+            <div class="card-body">
+                <p><strong>Email:</strong> {{ student.email }}</p>
+                <p><strong>Date of Birth:</strong> {{ student.date_of_birth }}</p>
+                <p><strong>Enrollment Date:</strong> {{ student.enrollment_date }}</p>
+                <p><strong>Grade:</strong> {{ student.grade }}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a href="{% url 'student_edit' student.pk %}" class="btn btn-primary mr-2">Edit Student</a>
+                <a href="{% url 'student_list' %}" class="btn btn-secondary">Back to student list</a>
+                
+                <form method="POST" action="{% url 'student_delete' student.pk %}" class="ml-auto">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete Student</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
 

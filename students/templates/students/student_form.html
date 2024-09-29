@@ -1,8 +1,93 @@
-<h1>{% if student %}Edit{% else %}Add{% endif %} Student</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
-<a href="{% url 'student_list' %}">Back to student list</a>
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if student %}Edit{% else %}Add{% endif %} Student
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+            /* Removed flex and centering styles that interfere with the navbar */
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;  /* Add top margin instead of flex centering */
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;  /* Ensures the label is on a separate line from the input */
+            margin-bottom: 5px;  /* Adds some space between the label and input */
+        }
+        input, select, textarea {
+            width: 100%;  /* Makes the input fields take up the full width of the form */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 48%;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 48%;
+        }
+        .d-flex {
+            justify-content: space-between;
+        }
+    </style>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>{% if student %}Edit{% else %}Add{% endif %} Student</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.non_field_errors }}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                                <div class="text-danger">{{ field.errors }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a href="{% url 'student_list' %}" class="btn btn-secondary">Back to student list</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
 
