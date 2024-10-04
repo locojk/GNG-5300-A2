@@ -39,7 +39,8 @@ MANIFEST
 # <django-project-name>/staticfiles/
 
 # Django migrations
-*/migrations/*
+# Removed to allow migration files to be tracked
+# */migrations/*
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -155,4 +156,5 @@ Icon
 .AppleDesktop
 Network Trash Folder
 Temporary Items
-.apdis
+.apdisk
+
